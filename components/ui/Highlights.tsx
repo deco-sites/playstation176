@@ -7,6 +7,7 @@ export interface Highlight {
   alt: string;
   href: string;
   label: string;
+  id?: number;
 }
 
 export interface Props {
@@ -30,16 +31,13 @@ function Highlights({ highlights = [], title }: Props) {
             <a href={href} class="card card-compact bg-base-100">
               <figure>
                 <Image
-                  class="rounded-[40px]"
+                  class="rounded-[20px]"
                   src={src}
                   alt={alt}
-                  width={190}
-                  height={265}
+                  width={175}
+                  height={100}
                 />
               </figure>
-              <div class="card-body items-center">
-                <h2 class="card-title text-base font-medium">{label}</h2>
-              </div>
             </a>
           </Slider.Item>
         ))}

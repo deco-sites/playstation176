@@ -13,6 +13,8 @@ export interface Banner {
   mobile: LiveImage;
   /** @description Image's alt text */
   alt: string;
+  /** @description Same number as highlight carousel */
+  id?: number;
   action?: {
     /** @description when user clicks on the image, go to this link */
     href: string;
@@ -22,6 +24,10 @@ export interface Banner {
     subTitle: string;
     /** @description Button label */
     label: string;
+    btnColor: "primary" | "secondary";
+    mobile?: LiveImage;
+    desktop?: LiveImage;
+    txtColor: "white" | "black";
   };
 }
 
@@ -50,7 +56,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
     <a
       href={action?.href ?? "#"}
       aria-label={action?.label}
-      class="relative h-[600px] overflow-y-hidden w-full"
+      class="relative overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
@@ -68,83 +74,38 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
           height={600}
         />
         <img
-          class="object-cover w-full"
+          class="object-cover w-full h-auto"
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           alt={alt}
         />
       </Picture>
       {action && (
-        <div class="absolute top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[235px] flex flex-col gap-4 p-4 rounded glass">
-          <span class="text-6xl font-medium text-base-100">
+        <div class="absolute bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min flex flex-col justify-center items-center gap-4 p-5 text-black">
+          <span
+            class={`text-xl font-extralight color-neutral ${
+              action.txtColor === "white" ? "text-white" : "text-black"
+            }`}
+          >
             {action.title}
           </span>
-          <span class="font-medium text-xl text-base-100">
+          <span
+            class={`font-extralight text-base text-ellipsis text-center max-h-28 overflow-hidden ${
+              action.txtColor === "white" ? "text-white" : "text-black"
+            }`}
+          >
             {action.subTitle}
           </span>
-          <Button class="glass">{action.label}</Button>
+          <Button
+            class={`btn ${
+              action.btnColor === "primary" ? "bg-prim" : "bg-secon"
+            } text-white rounded-full p-0 w-32 border-0`}
+          >
+            {action.label}
+          </Button>
         </div>
       )}
     </a>
-  );
-}
-
-function Dots({ images, interval = 0 }: Props) {
-  return (
-    <>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-          @property --dot-progress {
-            syntax: '<percentage>';
-            inherits: false;
-            initial-value: 0%;
-          }
-          `,
-        }}
-      />
-      <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4">
-        {images?.map((_, index) => (
-          <li class="carousel-item">
-            <Slider.Dot index={index}>
-              <div class="py-5">
-                <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
-                  style={{ animationDuration: `${interval}s` }}
-                />
-              </div>
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
-
-function Buttons() {
-  return (
-    <>
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
-          <Icon
-            class="text-base-100"
-            size={20}
-            id="ChevronLeft"
-            strokeWidth={3}
-          />
-        </Slider.PrevButton>
-      </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
-          <Icon
-            class="text-base-100"
-            size={20}
-            id="ChevronRight"
-            strokeWidth={3}
-          />
-        </Slider.NextButton>
-      </div>
-    </>
   );
 }
 
@@ -163,10 +124,6 @@ function BannerCarousel({ images, preload, interval }: Props) {
           </Slider.Item>
         ))}
       </Slider>
-
-      <Buttons />
-
-      <Dots images={images} interval={interval} />
 
       <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
     </div>
