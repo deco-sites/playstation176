@@ -57,7 +57,7 @@ export interface Props {
 
 function Footer({ sections = [] }: Props) {
   return (
-    <footer class="w-full  flex flex-col divide-y divide-primary-content  bg-blue-800 ">
+    <footer class="w-full  flex flex-col divide-y divide-primary-content bg-prim ">
       <div>
         <div class="container w-full flex flex-col divide-y divide-primary-content">
           <FooterContainer>

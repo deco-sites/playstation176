@@ -47,7 +47,7 @@ function MenuButton() {
 
 function LoginButton() {
   return (
-    <button class="bg-blue-600 rounded-full px-2 text-white font-semibold whitespace-nowrap hover:bg-blue-900">
+    <button class="bg-prim rounded-full px-2 text-white font-semibold whitespace-nowrap filter">
       Iniciar sessão
     </button>
   );

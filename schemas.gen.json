@@ -7219,6 +7219,14 @@
           "description": "Image's alt text",
           "title": "Alt"
         },
+        "id": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Same number as highlight carousel",
+          "title": "Id"
+        },
         "action": {
           "type": "object",
           "properties": {
@@ -7237,13 +7245,51 @@
             "label": {
               "type": "string",
               "title": "Label"
+            },
+            "btnColor": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "primary"
+                },
+                {
+                  "type": "string",
+                  "const": "secondary"
+                }
+              ],
+              "type": "string",
+              "title": "Btn Color"
+            },
+            "mobile": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "title": "Mobile"
+            },
+            "desktop": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "title": "Desktop"
+            },
+            "txtColor": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "white"
+                },
+                {
+                  "type": "string",
+                  "const": "black"
+                }
+              ],
+              "type": "string",
+              "title": "Txt Color"
             }
           },
           "required": [
             "href",
             "title",
             "subTitle",
-            "label"
+            "label",
+            "btnColor",
+            "txtColor"
           ],
           "title": "Action"
         }
@@ -7502,7 +7548,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9wbGF5c3RhdGlvbjE3Ni9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&b966eeb0bbdb3699ee11b12ce6a39cc4": {
+    "ZGVjby1zaXRlcy9wbGF5c3RhdGlvbjE3Ni9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&fbbc52d999b2a8546747b1cf875783a1": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9wbGF5c3RhdGlvbjE3Ni9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -7518,7 +7564,7 @@
           "required": []
         }
       ],
-      "title": "Colors&b966eeb0bbdb3699ee11b12ce6a39cc4"
+      "title": "Colors&fbbc52d999b2a8546747b1cf875783a1"
     },
     "ZGVjby1zaXRlcy9wbGF5c3RhdGlvbjE3Ni9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -7621,7 +7667,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9wbGF5c3RhdGlvbjE3Ni9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&b966eeb0bbdb3699ee11b12ce6a39cc4",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9wbGF5c3RhdGlvbjE3Ni9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&fbbc52d999b2a8546747b1cf875783a1",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -8213,6 +8259,13 @@
         "label": {
           "type": "string",
           "title": "Label"
+        },
+        "id": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Id"
         }
       },
       "required": [
