@@ -15,13 +15,9 @@ export interface Props {
   title: string;
 }
 
-function Highlights({ highlights = [], title }: Props) {
+function Highlights({ highlights = [] }: Props) {
   return (
-    <div class="container grid grid-cols-1 grid-rows-[48px_1fr] py-10">
-      <h2 class="text-center">
-        <span class="font-medium text-2xl">{title}</span>
-      </h2>
-
+    <div class="container grid grid-cols-1 grid-rows-[100px_1fr] py-10 sm:flex justify-center">
       <Slider class="carousel carousel-center sm:carousel-end gap-6">
         {highlights.map(({ href, src, alt, label }, index) => (
           <Slider.Item

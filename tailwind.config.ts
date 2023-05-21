@@ -35,6 +35,7 @@ export default {
       secon: "rgb(192, 53, 0)",
       white: "#fff",
       black: "#000",
+      prim_dark: "#005aa3",
     },
 
     extend: {
