@@ -45,6 +45,14 @@ function MenuButton() {
   );
 }
 
+function LoginButton() {
+  return (
+    <button class="bg-blue-600 rounded-full px-2 text-white font-semibold whitespace-nowrap hover:bg-blue-900">
+      Iniciar sessão
+    </button>
+  );
+}
+
 function CartButton() {
   const { displayCart } = useUI();
   const { loading, cart, mapItemsToAnalyticsItems } = useCart();
@@ -90,7 +98,9 @@ function CartButton() {
   );
 }
 
-function Buttons({ variant }: { variant: "cart" | "search" | "menu" }) {
+function Buttons(
+  { variant }: { variant: "cart" | "search" | "menu" | "login" },
+) {
   if (variant === "cart") {
     return <CartButton />;
   }
@@ -101,6 +111,9 @@ function Buttons({ variant }: { variant: "cart" | "search" | "menu" }) {
 
   if (variant === "menu") {
     return <MenuButton />;
+  }
+  if (variant === "login") {
+    return <LoginButton />;
   }
 
   return null;
