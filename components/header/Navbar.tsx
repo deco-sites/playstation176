@@ -95,28 +95,10 @@ function Navbar({ items, searchbar }: {
           {items.map((item) => <NavItem item={item} />)}
         </div>
         <div class="flex-none w-44 flex items-center justify-end gap-2">
+          <Buttons variant="login" />
           <Buttons variant="search" />
           <Searchbar searchbar={searchbar} />
-          <a
-            class="btn btn-square btn-ghost"
-            href="/login"
-            aria-label="Log in"
-          >
-            <Icon id="User" width={20} height={20} strokeWidth={0.4} />
-          </a>
-          <a
-            class="btn btn-square btn-ghost"
-            href="/wishlist"
-            aria-label="Wishlist"
-          >
-            <Icon
-              id="Heart"
-              size={20}
-              strokeWidth={2}
-              fill="none"
-            />
-          </a>
-          <Buttons variant="login" />
+
         </div>
       </div>
     </>
