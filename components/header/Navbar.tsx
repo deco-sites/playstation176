@@ -98,7 +98,6 @@ function Navbar({ items, searchbar }: {
           <Buttons variant="login" />
           <Buttons variant="search" />
           <Searchbar searchbar={searchbar} />
-
         </div>
       </div>
     </>
