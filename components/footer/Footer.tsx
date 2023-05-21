@@ -1,6 +1,4 @@
-import Icon, {
-  AvailableIcons,
-} from "$store/components/ui/Icon.tsx";
+import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ComponentChildren } from "preact";
 
@@ -59,7 +57,7 @@ export interface Props {
 
 function Footer({ sections = [] }: Props) {
   return (
-    <footer class="w-full bg-primary flex flex-col divide-y divide-primary-content">
+    <footer class="w-full  flex flex-col divide-y divide-primary-content  bg-blue-800 ">
       <div>
         <div class="container w-full flex flex-col divide-y divide-primary-content">
           <FooterContainer>
@@ -124,7 +122,7 @@ function Footer({ sections = [] }: Props) {
 
       <div>
         <div class="container w-full">
-          <FooterContainer class="flex justify-between w-full">
+          <FooterContainer class="flex justify-between w-full bg-blue-800">
             <span class="flex items-center gap-1 text-primary-content">
               Powered by{" "}
               <a
