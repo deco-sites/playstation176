@@ -29,6 +29,15 @@ export default {
     container: {
       center: true,
     },
+
+    colors: {
+      prim: "#0070cc",
+      secon: "rgb(192, 53, 0)",
+      white: "#fff",
+      black: "#000",
+      prim_dark: "#005aa3",
+    },
+
     extend: {
       animation: {
         "slide-left": "slide-left-frame 0.4s ease normal",

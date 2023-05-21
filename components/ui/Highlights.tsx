@@ -7,6 +7,7 @@ export interface Highlight {
   alt: string;
   href: string;
   label: string;
+  id?: number;
 }
 
 export interface Props {
@@ -14,13 +15,9 @@ export interface Props {
   title: string;
 }
 
-function Highlights({ highlights = [], title }: Props) {
+function Highlights({ highlights = [] }: Props) {
   return (
-    <div class="container grid grid-cols-1 grid-rows-[48px_1fr] py-10">
-      <h2 class="text-center">
-        <span class="font-medium text-2xl">{title}</span>
-      </h2>
-
+    <div class="container grid grid-cols-1 grid-rows-[100px_1fr] py-10 sm:flex justify-center">
       <Slider class="carousel carousel-center sm:carousel-end gap-6">
         {highlights.map(({ href, src, alt, label }, index) => (
           <Slider.Item
@@ -30,16 +27,13 @@ function Highlights({ highlights = [], title }: Props) {
             <a href={href} class="card card-compact bg-base-100">
               <figure>
                 <Image
-                  class="rounded-[40px]"
+                  class="rounded-[20px]"
                   src={src}
                   alt={alt}
-                  width={190}
-                  height={265}
+                  width={175}
+                  height={100}
                 />
               </figure>
-              <div class="card-body items-center">
-                <h2 class="card-title text-base font-medium">{label}</h2>
-              </div>
             </a>
           </Slider.Item>
         ))}

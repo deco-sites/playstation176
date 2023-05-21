@@ -1,20 +1,15 @@
-import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
-import SliderJS from "$store/islands/SliderJS.tsx";
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
-import { useId } from "preact/hooks";
-import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import type { Image as LiveImg } from "deco-sites/std/components/types.ts";
 
-export interface Banner {
+export interface BannerSecondary {
   /** @description desktop otimized image */
-  desktop: LiveImage;
+  desktop: LiveImg;
   /** @description mobile otimized image */
-  mobile: LiveImage;
+  mobile: LiveImg;
   /** @description Image's alt text */
   alt: string;
   /** @description Same number as highlight carousel */
-  id?: number;
   action?: {
     /** @description when user clicks on the image, go to this link */
     href: string;
@@ -25,26 +20,26 @@ export interface Banner {
     /** @description Button label */
     label: string;
     btnColor: "primary" | "secondary";
-    mobile?: LiveImage;
-    desktop?: LiveImage;
+    mobile?: LiveImg;
+    desktop?: LiveImg;
     txtColor: "white" | "black";
   };
 }
 
 export interface Props {
-  images?: Banner[];
+  image: BannerSecondary;
+
   /**
    * @description Check this option when this banner is the biggest image on the screen for image optimizations
    */
   preload?: boolean;
-  /**
-   * @title Autoplay interval
-   * @description time (in seconds) to start the carousel autoplay
-   */
-  interval?: number;
 }
 
-function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
+function BannerSecondary(
+  { image, lcp }: { image: BannerSecondary; lcp?: boolean },
+) {
+  if (image === undefined) return;
+
   const {
     alt,
     mobile,
@@ -56,7 +51,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
     <a
       href={action?.href ?? "#"}
       aria-label={action?.label}
-      class="relative overflow-y-hidden w-full"
+      class="relative overflow-y-hidden w-full flex flex-col sm:flex-row-reverse"
     >
       <Picture preload={lcp}>
         <Source
@@ -81,15 +76,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
         />
       </Picture>
       {action && (
-        <div class="absolute bottom-0 m-auto left-0 right-0 sm:left-0 sm:right-auto sm:max-w-2xl sm:text-right sm:justify-start max-h-min flex flex-col justify-center items-center gap-4 p-5 text-black">
-          {action.mobile && action.desktop && (
-            <img
-              class="object-cover w-full sm:w-3/12 h-auto"
-              loading={lcp ? "eager" : "lazy"}
-              src={action.desktop}
-              alt={alt}
-            />
-          )}
+        <div class="relative m-auto sm:max-w-2xl sm:text-right sm:justify-start max-h-min flex flex-col justify-center items-center gap-4 p-5 text-black">
           <span
             class={`text-xl font-extralight color-neutral ${
               action.txtColor === "white" ? "text-white" : "text-black"
@@ -117,25 +104,4 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
   );
 }
 
-function BannerCarousel({ images, preload, interval }: Props) {
-  const id = useId();
-
-  return (
-    <div
-      id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
-    >
-      <Slider class="carousel carousel-center w-full col-span-full row-span-full scrollbar-none gap-6">
-        {images?.map((image, index) => (
-          <Slider.Item index={index} class="carousel-item w-full">
-            <BannerItem image={image} lcp={index === 0 && preload} />
-          </Slider.Item>
-        ))}
-      </Slider>
-
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
-    </div>
-  );
-}
-
-export default BannerCarousel;
+export default BannerSecondary;
